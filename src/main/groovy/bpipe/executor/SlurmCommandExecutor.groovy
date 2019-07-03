@@ -80,6 +80,10 @@ class SlurmCommandExecutor extends TorqueCommandExecutor implements CommandExecu
             env.MODULES = config.modules
         }
 
+        if(config?.options) {
+            log.info "Using options: $config?.options"
+            env.OPTIONS = config.options
+        }
 
     }
 
