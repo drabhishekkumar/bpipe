@@ -233,6 +233,8 @@ $memory_request
 #SBATCH --time=$WALLTIME
 $procs_request
 #SBATCH -p $QUEUE
+#SBATCH -e /dev/null
+#SBATCH -o /dev/null
 
 set -o errexit
 
