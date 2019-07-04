@@ -80,11 +80,10 @@ class SlurmCommandExecutor extends TorqueCommandExecutor implements CommandExecu
             env.MODULES = config.modules
         }
 
-        if(config?.options) {
-            log.info "Using options: $config?.options"
-            env.OPTIONS = config.options
+        if(config?.containsKey("custom_submit_options")) {
+          env.CUSTOM_SUBMIT_OPTS = String.valueOf(config.custom_submit_options)"
+          log.info "Using slurm custom submit options: $config?.containsKey('custom_submit_options')"
         }
-
     }
 
     void cleanup() {

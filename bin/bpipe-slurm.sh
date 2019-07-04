@@ -212,16 +212,6 @@ module load $MOD"
         done
     fi
 
-   options_request = ""
-   #handle more options from slurm and write it into the job script
-   if [[ ! -z $OPTIONS ]]; then
-       for OPT in $OPTIONS
-       do
-           options_request="${options_request}
-#SBATCH $OPT"
-        done
-    fi
-
 
    # write out the job script to a file
    # Output masking unreliable at moment, stores the sbatch stdout and stderr in logs
@@ -311,8 +301,8 @@ status () {
                case "$job_state" in
                   CONFIGURING|PENDING|SUSPENDED) echo WAITING;; 
                   COMPLETING|RUNNING) echo RUNNING;;    
-                  CANCELLED) scontrol show job $1> $LOGFILE; echo COMPLETE 999;; # Artificial exit code because Slurm does not provide one    
-                  TIMEOUT) scontrol show job $1> $LOGFILE; echo COMPLETE 998;; # Artificial exit code because Slurm does not provide one    
+                  CANCELLED) scontrol show job $1> $LOGFILE; echo COMPLETE 999;; # Artificial exit code because Slurm does not provide one
+                  TIMEOUT) scontrol show job $1> $LOGFILE; echo COMPLETE 998;; # Artificial exit code because Slurm does not provide one
                   COMPLETED|FAILED|NODE_FAIL|PREEMPTED)
                   # scontrol will include ExitCode=N:M, where the N is exit code and M is signal (ignored)
                   #        command_exit_status=`echo $scontrol_output |grep Exit|sed 's/.*ExitCode=\([0-9]*\):[0-9]*/\1/'`
