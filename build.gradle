@@ -18,11 +18,11 @@ sourceSets {
         }
     }
 
-    test {
-        groovy {
-            srcDirs = ['test-src']
-        }
-    }
+//    test {
+//        groovy {
+//            srcDirs = ['test-src']
+//        }
+//    }
 }
 
 configurations {
@@ -117,6 +117,8 @@ if(!new File("local-lib").listFiles().find { it.name =~ /gridgain.*.jar/ }) {
 }
 
 jar {
+
+    zip64 true
 
     def cloudJars = configurations.cloudJar*.name
     def coreJars = configurations.compile*.name
