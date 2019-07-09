@@ -152,16 +152,16 @@ make_slurm_script () {
     	MEMORY=${MEMORY%g}
     	MEMORY=${MEMORY%G}
     	MEMORY=${MEMORY%GB}
-    	MEM_UNIT="GB"
+    	MEM_UNIT="G"
    elif [[ $MEMORY == *mb ]] || [[ $MEMORY == *MB ]] || [[ $MEMORY == *M ]] || [[ $MEMORY == *m ]];
    then
     	MEMORY=${MEMORY%mb}
     	MEMORY=${MEMORY%m}
     	MEMORY=${MEMORY%M}
     	MEMORY=${MEMORY%MB}
-    	MEM_UNIT="MB"
+    	MEM_UNIT="M"
    else
-        MEM_UNIT="gb" # default is to assume GB
+        MEM_UNIT="G" # default is to assume GB
    fi
 
    # handle the single, smp and mpi types specially
